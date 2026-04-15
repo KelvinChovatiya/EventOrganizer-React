@@ -8,14 +8,14 @@ const getAllContacts = async (req, res) => {
   }
 };
 
-// NEW: Update message status (unread -> read -> resolved)
+
 const updateContactStatus = async (req, res) => {
   try {
     const { status } = req.body;
     const contact = await Contact.findByIdAndUpdate(
       req.params.id,
       { status },
-      { new: true } // Returns the updated document
+      { new: true }
     );
     
     if (!contact) {
@@ -31,7 +31,7 @@ const submitContactForm = async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
 
-    // Validate that the required fields aren't empty
+
     if (!name || !email || !message) {
       return res.status(400).json({ message: 'Name, email, and message are required.' });
     }
