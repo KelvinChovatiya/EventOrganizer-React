@@ -1,9 +1,9 @@
 const Event = require('../models/Event');
 const sendEmail = require('../utils/sendEmail');
-// @desc    Get all events
+
 const getEvents = async (req, res) => {
   try {
-    // $ne means "Not Equal". This grabs 'active' events AND old events with no status.
+  
     const events = await Event.find({ status: { $ne: 'inactive' } }).sort({ date: 1 });
     
     res.status(200).json({ success: true, count: events.length, data: events });
@@ -24,7 +24,6 @@ const getAdminEvents = async (req, res) => {
   }
 };
 
-// @desc    Get single event
 const getEvent = async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
@@ -35,7 +34,6 @@ const getEvent = async (req, res) => {
   }
 };
 
-// @desc    Create a new event
 const createEvent = async (req, res) => {
   try {
     req.body.organizerId = req.user.id;
@@ -55,7 +53,7 @@ const createEvent = async (req, res) => {
   }
 };
 
-// @desc    Toggle event status (Active <-> Inactive)
+
 const toggleEventStatus = async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
@@ -75,7 +73,6 @@ const toggleEventStatus = async (req, res) => {
   }
 };
 
-// @desc    Update an event
 const updateEvent = async (req, res) => {
   try {
     if (req.user.role !== 'admin') {
@@ -91,7 +88,7 @@ const updateEvent = async (req, res) => {
   }
 };
 
-// @desc    Delete an event
+
 const deleteEvent = async (req, res) => {
   try {
     if (req.user.role !== 'admin') {
@@ -108,7 +105,7 @@ const deleteEvent = async (req, res) => {
   }
 };
 
-// Export all functions together at the bottom
+
 module.exports = {
   getEvents,
   getAdminEvents,
