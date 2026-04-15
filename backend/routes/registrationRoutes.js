@@ -14,7 +14,7 @@ router.get('/', protect, getAllRegistrations);
 router.get('/my-tickets', protect, getUserRegistrations);
 
 // 3. POST NEW TICKET (User Checkout)
-// This is the route your frontend is looking for!
+
 router.post('/:eventId', protect, registerForEvent);
 
 module.exports = router;
