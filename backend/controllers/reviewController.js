@@ -1,7 +1,7 @@
 const Review = require('../models/Review');
 const Event = require('../models/Event');
 
-// Admin: Get all reviews
+
 const getAllReviews = async (req, res) => {
   try {
     const reviews = await Review.find().populate('user', 'name email').populate('event', 'title').sort({ createdAt: -1 });
@@ -11,7 +11,6 @@ const getAllReviews = async (req, res) => {
   }
 };
 
-// Public: Get reviews for one specific event
 const getEventReviews = async (req, res) => {
   try {
     const reviews = await Review.find({ event: req.params.eventId }).populate('user', 'name').sort({ createdAt: -1 });
@@ -21,7 +20,7 @@ const getEventReviews = async (req, res) => {
   }
 };
 
-// User: Create a new review
+
 const createReview = async (req, res) => {
   try {
     const { rating, comment } = req.body;
