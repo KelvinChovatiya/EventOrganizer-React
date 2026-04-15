@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middleware/authMiddleware'); // Check this path!
+const { protect } = require('../middleware/authMiddleware');
 const { submitContactForm, getAllContacts, updateContactStatus } = require('../controllers/contactController');
 
 // PUBLIC: Submit a message
