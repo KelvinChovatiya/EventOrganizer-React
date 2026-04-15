@@ -1,6 +1,6 @@
 const Registration = require('../models/Registration'); 
 const Event = require('../models/Event'); 
-const sendEmail = require('../utils/sendEmail'); // Your email utility
+const sendEmail = require('../utils/sendEmail'); 
 
 const getUserRegistrations = async (req, res) => {
   try {
@@ -45,13 +45,12 @@ const registerForEvent = async (req, res) => {
       return res.status(400).json({ message: 'Failed to register. You might already have a ticket.' });
     }
 
-    // 3. Get the event details so we can put them in the email
+   
     const event = await Event.findById(eventId);
     if (!event) {
       return res.status(404).json({ message: 'Event not found.' });
     }
 
-    // 4. Create the ticket (Your exact working code)
     const newRegistration = await Registration.create({
       user: userId,
       event: eventId,
